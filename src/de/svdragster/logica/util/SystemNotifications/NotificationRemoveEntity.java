@@ -1,7 +1,7 @@
 package de.svdragster.logica.util.SystemNotifications;
 
 /**
- * Created by z003pksw on 20.12.2017.
+ * Created by Johannes Lüke on 20.12.2017.
  */
 
 public class NotificationRemoveEntity extends Notification {

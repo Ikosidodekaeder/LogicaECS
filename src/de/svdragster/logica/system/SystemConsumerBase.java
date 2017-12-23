@@ -7,7 +7,7 @@ import de.svdragster.logica.components.ComponentProduct;
 import de.svdragster.logica.components.ComponentResource;
 
 /**
- * Created by z003pksw on 21.12.2017.
+ * Created by Johannes Lüke on 21.12.2017.
  */
 
 public abstract class SystemConsumerBase extends System {

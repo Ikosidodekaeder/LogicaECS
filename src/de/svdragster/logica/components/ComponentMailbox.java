@@ -8,7 +8,7 @@ import java.util.Queue;
 
 
 /**
- * Created by z003pksw on 10.12.2017.
+ * Created by Johannes Lüke on 10.12.2017.
  */
 
 public class ComponentMailbox extends Component {

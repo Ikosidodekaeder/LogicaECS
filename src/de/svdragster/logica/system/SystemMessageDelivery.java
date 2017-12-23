@@ -7,7 +7,7 @@ import de.svdragster.logica.manager.EntityManager;
 import java.util.Observable;
 
 /**
- * Created by Johannes on 10.12.2017.
+ * Created by Johannes Lüke on 10.12.2017.
  */
 
 /**

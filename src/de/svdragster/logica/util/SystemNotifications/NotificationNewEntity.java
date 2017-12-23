@@ -3,7 +3,7 @@ package de.svdragster.logica.util.SystemNotifications;
 import de.svdragster.logica.components.meta.ComponentType;
 
 /**
- * Created by z003pksw on 20.12.2017.
+ * Created by Johannes Lüke on 20.12.2017.
  */
 
 public class NotificationNewEntity extends Notification {
