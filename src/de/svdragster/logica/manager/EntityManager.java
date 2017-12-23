@@ -1,8 +1,7 @@
-package de.svdragster.logica.entities;
+package de.svdragster.logica.manager;
 
 import de.svdragster.logica.components.Component;
-import de.svdragster.logica.components.ComponentManager;
-import de.svdragster.logica.components.ComponentType;
+import de.svdragster.logica.components.meta.ComponentType;
 
 import java.util.*;
 

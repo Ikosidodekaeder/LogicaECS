@@ -1,9 +1,8 @@
 package de.svdragster.logica.system;
 
 import de.svdragster.logica.components.ComponentMailbox;
-import de.svdragster.logica.components.ComponentType;
-import de.svdragster.logica.components.StdComponents;
-import de.svdragster.logica.entities.EntityManager;
+import de.svdragster.logica.components.meta.StdComponents;
+import de.svdragster.logica.manager.EntityManager;
 
 import java.util.Observable;
 

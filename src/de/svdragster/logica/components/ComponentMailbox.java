@@ -1,5 +1,6 @@
 package de.svdragster.logica.components;
 
+import de.svdragster.logica.components.meta.StdComponents;
 import de.svdragster.logica.util.Delegate;
 
 import java.util.LinkedList;

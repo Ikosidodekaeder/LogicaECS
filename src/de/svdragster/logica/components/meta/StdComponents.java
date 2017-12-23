@@ -1,10 +1,12 @@
-package de.svdragster.logica.components;
+package de.svdragster.logica.components.meta;
+
+import de.svdragster.logica.components.meta.ComponentType;
 
 /**
  * Created by z003pksw on 18.12.2017.
  */
 
-public enum StdComponents implements ComponentType{
+public enum StdComponents implements ComponentType {
     POSITION,
     MOVEMENT,
     RENDER,

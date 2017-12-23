@@ -1,7 +1,7 @@
 package de.svdragster.logica.system;
 
 import de.svdragster.logica.components.Component;
-import de.svdragster.logica.entities.EntityManager;
+import de.svdragster.logica.manager.EntityManager;
 import de.svdragster.logica.world.Engine;
 
 import java.util.HashMap;

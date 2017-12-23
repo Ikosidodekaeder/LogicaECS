@@ -1,7 +1,6 @@
 package de.svdragster.logica.util.SystemNotifications;
 
-import de.svdragster.logica.components.Component;
-import de.svdragster.logica.components.ComponentType;
+import de.svdragster.logica.components.meta.ComponentType;
 
 /**
  * Created by z003pksw on 20.12.2017.

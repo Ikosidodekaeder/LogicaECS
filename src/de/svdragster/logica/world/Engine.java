@@ -2,10 +2,10 @@ package de.svdragster.logica.world;
 
 
 
-import de.svdragster.logica.components.ComponentManager;
-import de.svdragster.logica.entities.EntityManager;
+import de.svdragster.logica.manager.ComponentManager;
+import de.svdragster.logica.manager.EntityManager;
 import de.svdragster.logica.system.System;
-import de.svdragster.logica.system.SystemManager;
+import de.svdragster.logica.manager.SystemManager;
 
 
 /**

@@ -5,8 +5,8 @@ import java.util.List;
 import de.svdragster.logica.components.Component;
 import de.svdragster.logica.components.ComponentProduct;
 import de.svdragster.logica.components.ComponentResource;
-import de.svdragster.logica.components.ComponentType;
-import de.svdragster.logica.components.StdComponents;
+import de.svdragster.logica.components.meta.ComponentType;
+import de.svdragster.logica.components.meta.StdComponents;
 import de.svdragster.logica.util.SystemNotifications.NotificationNewEntity;
 import de.svdragster.logica.world.Engine;
 

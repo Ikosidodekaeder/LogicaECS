@@ -1,5 +1,7 @@
 package de.svdragster.logica.components;
 
+import de.svdragster.logica.components.meta.StdComponents;
+
 /**
  * Created by Sven on 08.12.2017.
  */

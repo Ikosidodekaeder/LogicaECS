@@ -1,9 +1,11 @@
-package de.svdragster.logica.system;
+package de.svdragster.logica.manager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
+
+import de.svdragster.logica.system.System;
 
 /**
  * Created by Sven on 08.12.2017.
