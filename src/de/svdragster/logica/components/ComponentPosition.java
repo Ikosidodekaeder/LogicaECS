@@ -8,11 +8,13 @@ public class ComponentPosition extends Component {
 
     public double X;
     public double Y;
+    public double lastX;
+    public double lastY;
 
     public ComponentPosition(double x, double y){
-        super.setType(ComponentType.POSITION);
-        X = x;
-        Y = y;
+        super.setType(StdComponents.POSITION);
+        lastX = X = x;
+        lastY = Y = y;
     }
 
 }

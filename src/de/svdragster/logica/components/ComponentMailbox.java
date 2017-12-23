@@ -53,7 +53,7 @@ public class ComponentMailbox extends Component {
     public Queue<Message> Outbox;
 
     public ComponentMailbox(){
-        super.setType(ComponentType.MESSAGE);
+        super.setType(StdComponents.MESSAGE);
         Inbox = new LinkedList<Message>();
         Outbox = new LinkedList<Message>();
     }

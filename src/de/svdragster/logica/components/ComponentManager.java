@@ -13,15 +13,16 @@ import java.util.UUID;
 public class ComponentManager {
 
     private Map<ComponentType, List<Component>> componentList;
+    private Map<UUID,Component>                 ComponentHash = new HashMap<>();
 
-    public Map<ComponentType, List<Component>> getComponentList() {
+    public  Map<ComponentType, List<Component>> getComponentList() {
         return componentList;
     }
 
     public ComponentManager() {
         this.componentList = new HashMap<ComponentType, List<Component>>();
 
-        for (ComponentType componentType : ComponentType.values()) {
+        for (ComponentType componentType : StdComponents.values()) {
             this.componentList.put(componentType, new ArrayList<Component>());
         }
 
@@ -40,6 +41,7 @@ public class ComponentManager {
      * @return true on success
      */
     public boolean remove(Component component){
+        ComponentHash.remove(component.getID());
         return componentList.get(component.getType()).remove(component);
     }
 
@@ -56,11 +58,18 @@ public class ComponentManager {
     public int queryAmount(ComponentType type) {
         return componentList.get(type).size();
     }
+
     public Component queryComponent(UUID ID){
+        if(ComponentHash.containsKey(ID))
+            return ComponentHash.get(ID);
+
         for( List<Component> types : componentList.values()){
             for(Component component : types){
-                if (component.getID().equals(ID))
+                if (component.getID().equals(ID)){
+                    ComponentHash.put(component.getID(),component);
                     return component;
+                }
+
             }
         }
         return null;

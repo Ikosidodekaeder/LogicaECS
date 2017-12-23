@@ -16,18 +16,28 @@ import de.svdragster.logica.system.SystemManager;
 public class Engine {
 
 	private static Engine instance;
+	private static long EngineFrameTime;
 
-    private ComponentManager componentManager;
-    private EntityManager entityManager;
-    private SystemManager systemManager;
+    private static long totalRuntime;
+
+    private ComponentManager componentManager   = new ComponentManager();
+    private EntityManager entityManager         = new EntityManager(componentManager);
+    private SystemManager systemManager         = new SystemManager();
+
+    boolean suspendedFlag = false;
+    long loop = 0;
 
 
     public Engine(){
-        this.componentManager = new ComponentManager();
-        this.entityManager = new EntityManager(componentManager);
-        this.systemManager = new SystemManager();
-
         instance = this;
+        EngineFrameTime = 0;
+    }
+
+    public Engine(ComponentManager com,EntityManager entity,SystemManager system){
+        this.componentManager = com;
+        this.entityManager = entity;
+        this.systemManager = system;
+        EngineFrameTime = 0;
     }
 
 
@@ -43,13 +53,39 @@ public class Engine {
         return systemManager;
     }
 
-    public void run() {
-        for(System s : systemManager)
-            if(s.isActive())
-                s.process( 1);
+    public void run(float delta) {
+        loop++;
+        // java.lang.System.nanoTime();
+        long startTime = java.lang.System.nanoTime();
+        try{
+            for(System s : systemManager)
+                if(s.isActive())
+                    s.process( delta );
+
+        }catch (Exception e)
+        {
+            //e.printStackTrace();
+        }
+        EngineFrameTime =  java.lang.System.nanoTime() - startTime;
+        totalRuntime += EngineFrameTime;
+
+        //java.lang.System.out.println("LogicDelta " + ((float)loop/(endtime-startTime)) + " Iteration: "+ loop);
+
+    }
+
+    public static long FrameTime(){
+        return EngineFrameTime;
+    }
+
+    public static double FramesPerSecond(){
+        return 1.0D/((FrameTime()/Math.pow(10,6)) / 1000.0D);
     }
 
 	public static Engine getInstance() {
 		return instance;
 	}
+
+	public static long Runtime_ms(){
+        return (long)(totalRuntime / Math.pow(10,6));
+    }
 }

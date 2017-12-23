@@ -10,7 +10,7 @@ public class ComponentMovement extends Component {
     public double dY;
 
     public ComponentMovement(double dx, double dy){
-        super.setType(ComponentType.MOVEMENT);
+        super.setType(StdComponents.MOVEMENT);
         dX = dx;
         dY = dy;
     }

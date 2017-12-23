@@ -7,6 +7,6 @@ package de.svdragster.logica.components;
 public class ComponentConsumer extends Component {
 
     public ComponentConsumer(){
-        super.setType(ComponentType.CONSUMER);
+        super.setType(StdComponents.CONSUMER);
     }
 }

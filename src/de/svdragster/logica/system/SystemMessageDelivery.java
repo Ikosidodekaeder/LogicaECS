@@ -2,6 +2,7 @@ package de.svdragster.logica.system;
 
 import de.svdragster.logica.components.ComponentMailbox;
 import de.svdragster.logica.components.ComponentType;
+import de.svdragster.logica.components.StdComponents;
 import de.svdragster.logica.entities.EntityManager;
 
 import java.util.Observable;
@@ -26,7 +27,7 @@ public class SystemMessageDelivery extends System {
         return getGlobalEntityContext().isEntityAlive(CurrentProcessedMessage.To()) && !(CurrentProcessedMessage.To() < 0);
     }
     private boolean checkDeliverability(ComponentMailbox.Message message){
-        return getGlobalEntityContext().hasComponent(message.To(), ComponentType.MESSAGE);
+        return getGlobalEntityContext().hasComponent(message.To(), StdComponents.MESSAGE);
     }
 
     private boolean isBroadcastingMessage(){
@@ -38,7 +39,7 @@ public class SystemMessageDelivery extends System {
     }
     private void sendMessageToRecipient(ComponentMailbox.Message message){
         ((ComponentMailbox)getGlobalEntityContext()
-                .retrieveComponent(message.To(),ComponentType.MESSAGE))
+                .retrieveComponent(message.To(),StdComponents.MESSAGE))
                 .Inbox.add(message);
     }
 
@@ -47,9 +48,9 @@ public class SystemMessageDelivery extends System {
     public void process(double delta) {
         //Because ANY entity could receive a message from another entity we check every entity if they
         //have mailboxes available.
-        for(int entity : getGlobalEntityContext().getEntityContext().keySet()){
-            if(getGlobalEntityContext().hasComponent(entity, ComponentType.MESSAGE)){ //An entity has a mailbox so we are going to retrieve it
-                ComponentMailbox box = (ComponentMailbox) getGlobalEntityContext().retrieveComponent(entity,ComponentType.MESSAGE);
+        /*for(int entity : getGlobalEntityContext().getEntityContext().keySet()){
+            if(getGlobalEntityContext().hasComponent(entity, StdComponents.MESSAGE)){ //An entity has a mailbox so we are going to retrieve it
+                ComponentMailbox box = (ComponentMailbox) getGlobalEntityContext().retrieveComponent(entity,StdComponents.MESSAGE);
                 if(box == null)
                     continue;
                 //Check if there any messages left to be delivered to another entity
@@ -72,7 +73,7 @@ public class SystemMessageDelivery extends System {
                    }
                 }
             }
-        }
+        }*/
 
     }
 

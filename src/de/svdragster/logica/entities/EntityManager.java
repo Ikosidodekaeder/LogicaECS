@@ -11,16 +11,14 @@ import java.util.*;
  */
 
 public class EntityManager {
-    private Map<Integer, List<UUID>>        EntityContext;
-    private ComponentManager ComponentStorage;
+    private Map<Integer, List<UUID>>        EntityContext = new HashMap<Integer, List<UUID>>();;
+    private ComponentManager                ComponentStorage = null;
 
     private int currentId = 0;
-    private Queue<Integer> freeIds;
+    private Queue<Integer> freeIds = new LinkedList<Integer>();
 
     public EntityManager(ComponentManager componentStorage) {
         this.ComponentStorage = componentStorage;
-        this.EntityContext = new HashMap<Integer, List<UUID>>();
-        this.freeIds = new LinkedList<Integer>();
     }
 
     /**

@@ -7,6 +7,6 @@ package de.svdragster.logica.components;
 public class ComponentExchanger extends Component {
 
     public ComponentExchanger(){
-        super.setType(ComponentType.EXCHANGER);
+        super.setType(StdComponents.EXCHANGER);
     }
 }

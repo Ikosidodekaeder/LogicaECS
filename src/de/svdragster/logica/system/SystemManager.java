@@ -20,9 +20,11 @@ import java.util.Observable;
 public class SystemManager extends Observable implements Iterable<System> {
 
     private List<System> SystemPool;
+    public static SystemManager Instance;
 
     public SystemManager() {
         this.SystemPool = new ArrayList<System>();
+        Instance = this;
     }
 
     public void addSystem(System... systems){
@@ -40,6 +42,7 @@ public class SystemManager extends Observable implements Iterable<System> {
         notifyObservers(arg);
     }
 
+    public static SystemManager getInstance() { return Instance;}
 
     @Override
     public Iterator<System> iterator() {
