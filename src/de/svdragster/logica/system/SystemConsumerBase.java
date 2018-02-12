@@ -13,14 +13,7 @@ import de.svdragster.logica.components.ComponentResource;
 public abstract class SystemConsumerBase extends System {
 
 
-    protected ComponentProduct getEntityResource(int Entity){
-        List<Component> EntityProperties = getLocalEntityCache().get(Entity);
-        if(EntityProperties != null)
-            for(Component c : EntityProperties)
-                if(c instanceof ComponentProduct)
-                    return (ComponentProduct) c;
-        throw new NullPointerException();
-    }
+
 
 
 

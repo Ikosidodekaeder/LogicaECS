@@ -7,6 +7,7 @@ import de.svdragster.logica.components.ComponentProduct;
 import de.svdragster.logica.components.ComponentResource;
 import de.svdragster.logica.components.meta.ComponentType;
 import de.svdragster.logica.components.meta.StdComponents;
+import de.svdragster.logica.manager.Entity.Entity;
 import de.svdragster.logica.util.SystemNotifications.NotificationNewEntity;
 import de.svdragster.logica.world.Engine;
 
@@ -16,8 +17,10 @@ import de.svdragster.logica.world.Engine;
 
 public abstract class SystemProducerBase extends System  {
 
+/*
+    protected ComponentResource
 
-    protected ComponentResource getEntityResource(int Entity){
+    getEntityResource(int Entity){
         List<Component> EntityProperties = getLocalEntityCache().get(Entity);
         if(EntityProperties != null)
            for(Component c : EntityProperties)
@@ -25,15 +28,16 @@ public abstract class SystemProducerBase extends System  {
                    return (ComponentResource) c;
         throw new NullPointerException();
     }
+
     public boolean isProducerEntity(int entity){
-        return this.getGlobalEntityContext().hasComponent(entity, StdComponents.PRODUCER);
+        return false;//this.getGlobalEntityContext().hasComponent(entity, StdComponents.PRODUCER);
     }
 
     public void EmitProducts(ComponentResource Resource, ComponentType Type){
 
         //Emit new Product
         for(int i = 0; i < Resource.productionAmount; i++){
-            int NewProduct = getGlobalEntityContext().createEntity(new ComponentProduct());
+            Entity NewProduct = getGlobalEntityContext().createID(new ComponentProduct());
             Engine.getInstance().getSystemManager().BroadcastMessage(new NotificationNewEntity(NewProduct,Type));
         }
     }
@@ -45,6 +49,6 @@ public abstract class SystemProducerBase extends System  {
 
     public void advanceProgress(ComponentResource Resource, float delta){
         Resource.productionProgress += Resource.productionRate*(float)(delta+Engine.FrameTime());
-    }
+    }*/
 
 }

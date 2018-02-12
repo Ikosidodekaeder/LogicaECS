@@ -1,6 +1,7 @@
 package de.svdragster.logica.components;
 
 import de.svdragster.logica.components.meta.StdComponents;
+import de.svdragster.logica.manager.Entity.Entity;
 import de.svdragster.logica.util.Delegate;
 
 import java.util.LinkedList;
@@ -14,8 +15,8 @@ import java.util.Queue;
 public class ComponentMailbox extends Component {
 
     public static class Message{
-        private int          Recipient;
-        private int          Origin;
+        private Entity          Recipient;
+        private Entity          Origin;
         private String       Text;
 
         private boolean      invokable = true;
@@ -24,12 +25,15 @@ public class ComponentMailbox extends Component {
 
 
 
-        public Message(int Recipient, int Origin, String text, Delegate callback){
+        public Message(Entity Recipient, Entity Origin, String text, Delegate callback){
             this.Recipient = Recipient;
             this.Origin = Origin;
 
             this.Text = text;
-            this.Callback = callback;
+            if(callback != null)
+                this.Callback = callback;
+            else
+                this.invokable = false;
         }
 
         public void InvokeCallback(Object...args){
@@ -37,11 +41,11 @@ public class ComponentMailbox extends Component {
                 Callback.invoke(args);
         }
 
-        public int From(){
+        public Entity From(){
             return Origin;
         }
 
-        public int To(){
+        public Entity To(){
             return Recipient;
         }
 
@@ -61,7 +65,7 @@ public class ComponentMailbox extends Component {
 
 
     public boolean hasOutGoingMail(){
-        return !Inbox.isEmpty();
+        return !Outbox.isEmpty();
     }
 
 

@@ -3,7 +3,7 @@ package de.svdragster.logica.world;
 
 
 import de.svdragster.logica.manager.ComponentManager;
-import de.svdragster.logica.manager.EntityManager;
+import de.svdragster.logica.manager.Entity.EntityManager;
 import de.svdragster.logica.system.System;
 import de.svdragster.logica.manager.SystemManager;
 
@@ -21,7 +21,7 @@ public class Engine {
     private static long totalRuntime;
 
     private ComponentManager componentManager   = new ComponentManager();
-    private EntityManager entityManager         = new EntityManager(componentManager);
+    private EntityManager entityManager         = new EntityManager(/*componentManager*/);
     private SystemManager systemManager         = new SystemManager();
 
     boolean suspendedFlag = false;
@@ -33,8 +33,8 @@ public class Engine {
         EngineFrameTime = 0;
     }
 
-    public Engine(ComponentManager com,EntityManager entity,SystemManager system){
-        this.componentManager = com;
+    public Engine(/*ComponentManager com,*/EntityManager entity,SystemManager system){
+        //this.componentManager = com;
         this.entityManager = entity;
         this.systemManager = system;
         EngineFrameTime = 0;
@@ -64,14 +64,19 @@ public class Engine {
 
         }catch (Exception e)
         {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
+
+
         EngineFrameTime =  java.lang.System.nanoTime() - startTime;
         totalRuntime += EngineFrameTime;
 
         //java.lang.System.out.println("LogicDelta " + ((float)loop/(endtime-startTime)) + " Iteration: "+ loop);
 
     }
+
+
+
 
     public static long FrameTime(){
         return EngineFrameTime;

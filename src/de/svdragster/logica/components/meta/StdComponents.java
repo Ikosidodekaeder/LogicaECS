@@ -3,7 +3,7 @@ package de.svdragster.logica.components.meta;
 import de.svdragster.logica.components.meta.ComponentType;
 
 /**
- * Created by z003pksw on 18.12.2017.
+ * Created by Johannes Lüke on 18.12.2017.
  */
 
 public enum StdComponents implements ComponentType {

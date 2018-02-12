@@ -7,8 +7,6 @@ import de.svdragster.logica.components.meta.StdComponents;
  */
 
 public class ComponentProducer extends Component {
-
-
     public ComponentProducer(){
         super.setType(StdComponents.PRODUCER);
     }

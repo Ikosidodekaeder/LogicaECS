@@ -1,7 +1,8 @@
 package de.svdragster.logica.system;
 
 import de.svdragster.logica.components.Component;
-import de.svdragster.logica.manager.EntityManager;
+import de.svdragster.logica.manager.Entity.Entity;
+import de.svdragster.logica.manager.Entity.EntityManager;
 import de.svdragster.logica.world.Engine;
 
 import java.util.HashMap;
@@ -29,16 +30,16 @@ public abstract class System  implements Observer {
 
 
     private EntityManager GlobalEntityContext;
-    private Map<Integer,List<Component>> LocalEntityCache = new HashMap<>();
+    private Map<Entity,List<Component>> LocalEntityCache = new HashMap<>();
 
     private boolean isActive=true;
 
 
-    public  Map<Integer,List<Component>> getLocalEntityCache() {
+    public  Map<Entity,List<Component>> getLocalEntityCache() {
         return LocalEntityCache;
     }
 
-    public void setLocalEntityCache( Map<Integer,List<Component>> l){
+    public void setLocalEntityCache( Map<Entity,List<Component>> l){
         LocalEntityCache = l;
     }
 
