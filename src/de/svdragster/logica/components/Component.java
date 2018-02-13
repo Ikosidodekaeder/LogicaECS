@@ -1,4 +1,5 @@
 package de.svdragster.logica.components;
+import java.util.BitSet;
 import java.util.UUID;
 
 import de.svdragster.logica.components.meta.ComponentType;
@@ -10,7 +11,7 @@ import de.svdragster.logica.manager.Entity.Entity;
 
 public abstract class Component {
     private ComponentType type;
-    private UUID           ID;
+    private UUID          ID;
 
     private Entity        BackAssociation;
 
@@ -24,6 +25,7 @@ public abstract class Component {
 
     public void setType(ComponentType type) {
         this.type = type;
+
     }
     public ComponentType getType() {
         return type;

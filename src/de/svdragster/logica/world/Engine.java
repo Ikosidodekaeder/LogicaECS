@@ -76,6 +76,10 @@ public class Engine {
     }
 
 
+    public void BroadcastMessage(Object Message){
+        systemManager.BroadcastMessage(Message);
+    }
+
 
 
     public static long FrameTime(){
