@@ -38,4 +38,19 @@ public abstract class Component {
     public void setBackAssociation(Entity backAssociation) {
         BackAssociation = backAssociation;
     }
+
+    @Override
+    public String toString(){
+        return type.toString();
+    }
+    public boolean equals(Object o){
+        if(o instanceof Component){
+
+            Component c = (Component) o;
+            //System.out.println("Types: " + c.getType().toString() + " " + this.getType().toString());
+            return( c.getType() == this.getType());
+        }
+
+        return false;
+    }
 }

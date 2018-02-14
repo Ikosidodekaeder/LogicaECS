@@ -1,5 +1,8 @@
 package de.svdragster.logica.system;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.svdragster.logica.components.Component;
@@ -15,40 +18,59 @@ import de.svdragster.logica.world.Engine;
  * Created by Johannes Lüke on 09.12.2017.
  */
 
+/**
+ *
+ */
 public abstract class SystemProducerBase extends System  {
 
-/*
-    protected ComponentResource
+    /**
+     *
+     * @param Resource
+     * @param inject
+     */
+    public void EmitProducts(ComponentResource Resource,Component...inject){
 
-    getEntityResource(int Entity){
-        List<Component> EntityProperties = getLocalEntityCache().get(Entity);
-        if(EntityProperties != null)
-           for(Component c : EntityProperties)
-               if(c instanceof ComponentResource)
-                   return (ComponentResource) c;
-        throw new NullPointerException();
-    }
 
-    public boolean isProducerEntity(int entity){
-        return false;//this.getGlobalEntityContext().hasComponent(entity, StdComponents.PRODUCER);
-    }
-
-    public void EmitProducts(ComponentResource Resource, ComponentType Type){
-
+        List<Component> tmp  = new ArrayList<Component>(Resource.productType);
+        tmp.addAll(Arrays.asList(inject));
         //Emit new Product
         for(int i = 0; i < Resource.productionAmount; i++){
-            Entity NewProduct = getGlobalEntityContext().createID(new ComponentProduct());
-            Engine.getInstance().getSystemManager().BroadcastMessage(new NotificationNewEntity(NewProduct,Type));
+            Entity NewProduct = getGlobalEntityContext().createID(
+                    new ArrayList<Component>(tmp)
+            );
+
+            //java.lang.System.out.println("Emit Product: " + NewProduct );
+            Engine.getInstance().getSystemManager().BroadcastMessage(new NotificationNewEntity(NewProduct));
         }
     }
 
-    public void ResetProductionProgress(ComponentResource Resource){
+    /**
+     *
+     * @param Resource
+     */
+    public void resetProductionProgress(ComponentResource Resource){
         //Reset Progress
         Resource.productionProgress -= Resource.productionPeriod;
     }
 
+    /**
+     *
+     * @param Resource
+     * @param delta
+     */
     public void advanceProgress(ComponentResource Resource, float delta){
         Resource.productionProgress += Resource.productionRate*(float)(delta+Engine.FrameTime());
-    }*/
+    }
+
+    /**
+     *
+     * @param Resource
+     * @return
+     */
+    public boolean isReady(ComponentResource Resource){
+        return Resource.productionProgress > Resource.productionPeriod;
+    }
+
+
 
 }

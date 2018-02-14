@@ -1,5 +1,7 @@
 package de.svdragster.logica.manager.Entity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +27,20 @@ public class Entity {
             Engine.getInstance().getComponentManager().add(c);
         }
 
+    }
 
+    public List<Component> getAssociatedComponents(){
+        return associatedComponents;
     }
 
     /**
-     * Simply checks if the current Entity has any number of Components associated with it.
+     * Simply checks if the current getEntity has any number of Components associated with it.
      * @return Boolean
      */
     public boolean hasAnyAssociations() { return !associatedComponents.isEmpty();}
 
     /**
-     * Checks if a certain type of Component is associated with the Entity. If this is the case
+     * Checks if a certain type of Component is associated with the getEntity. If this is the case
      * the returned Pair contains two Values. The first on indicates the positive found a a type the
      * second parameter holds a non-null reference to the component you just checked.
      * If the type you try to check for is not found to be associated with the entity the first paramter
@@ -45,7 +50,7 @@ public class Entity {
      *
      * @param type Component Type which is going to be looked up
      * @param <BOOL_HasComponent> boolean type. If true the second param contains a non null ref to a Component
-     * @param <ComponentReference> Reference to a Component associated with the current Entity
+     * @param <ComponentReference> Reference to a Component associated with the current getEntity
      * @return
      */
     public Pair hasAssociationWith(ComponentType type){
@@ -57,7 +62,7 @@ public class Entity {
     }
 
     /**
-     * Removes a associated component from the Entity. If successful it returns true otherwise false;
+     * Removes a associated component from the getEntity. If successful it returns true otherwise false;
      * if false this indicates that the component was never associated with the entity in the first
      * plase
      * @param type
@@ -93,4 +98,41 @@ public class Entity {
         }
     }
 
+    /**
+     * Any getEntity equals another entity if they have the same component signature.
+     * If by chance you compare an entity to it self we do not need to check the
+     * signature!
+     *
+     * @param o
+     * @return true on same signature
+     */
+    @Override
+    public boolean equals(@NotNull Object o) {
+        if(o == null)
+            return false;
+        if(o == this)
+            return true;
+
+        if(o instanceof Entity){
+            Entity e = (Entity) o;
+            if(this.getAssociatedComponents().size() != e.getAssociatedComponents().size())
+                return false;
+
+            for(int i = 0; i < this.getAssociatedComponents().size(); i++)
+                if(associatedComponents.get(i).getType() != e.getAssociatedComponents().get(i).getType())
+                    return false;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        for(Component component: associatedComponents)
+            builder.append(component.toString() + ", ");
+        return builder.toString();
+    }
 }

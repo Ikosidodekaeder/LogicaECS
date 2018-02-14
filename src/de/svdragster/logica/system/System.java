@@ -5,6 +5,7 @@ import de.svdragster.logica.manager.Entity.Entity;
 import de.svdragster.logica.manager.Entity.EntityManager;
 import de.svdragster.logica.world.Engine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,19 +28,31 @@ import java.util.Observer;
  *
  */
 public abstract class System  implements Observer {
-
-
     private EntityManager GlobalEntityContext;
-    private Map<Entity,List<Component>> LocalEntityCache = new HashMap<>();
+    private List<Entity> LocalEntityCache = new ArrayList<>();
 
     private boolean isActive=true;
 
+    /**
+     *
+     */
+    public System(){
+        subscribe();
+    }
 
-    public  Map<Entity,List<Component>> getLocalEntityCache() {
+    /**
+     *
+     * @return
+     */
+    public  List<Entity> getLocalEntityCache() {
         return LocalEntityCache;
     }
 
-    public void setLocalEntityCache( Map<Entity,List<Component>> l){
+    /**
+     *
+     * @param l
+     */
+    public void setLocalEntityCache( List<Entity> l){
         LocalEntityCache = l;
     }
 
@@ -96,10 +109,16 @@ public abstract class System  implements Observer {
         Engine.getInstance().getSystemManager().deleteObserver(this);
     }
 
+    /**
+     *
+     */
     public void disableSystem(){
         setActive(false);
     }
 
+    /**
+     *
+     */
     public void enableSystem(){
         setActive(true);
     }

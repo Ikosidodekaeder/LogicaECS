@@ -1,6 +1,7 @@
 package de.svdragster.logica.util.SystemNotifications;
 
 import de.svdragster.logica.components.meta.ComponentType;
+import de.svdragster.logica.manager.Entity.Entity;
 
 /**
  * Created by Johannes Lüke on 20.12.2017.
@@ -8,22 +9,20 @@ import de.svdragster.logica.components.meta.ComponentType;
 
 public class NotificationNewEntity extends Notification {
 
-    int                 entity;
-    ComponentType[]     EntityProperties;
+    Entity              entity;
 
-    public NotificationNewEntity(int Entity, ComponentType...Types){
-        entity = Entity;
-        EntityProperties = Types;
+    public NotificationNewEntity(Entity entity){
+        this.entity = entity;
     }
 
 
-    public int Entity(){
+    public Entity getEntity(){
         return entity;
     }
 
     public boolean isOfType(ComponentType...Types){
         for(int i = 0; i < Types.length;i++)
-            if(EntityProperties[i] == Types[i])
+            if((boolean)entity.hasAssociationWith(Types[i]).getFirst() )
                 continue;
             else
                 return false;

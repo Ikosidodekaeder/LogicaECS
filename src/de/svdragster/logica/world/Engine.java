@@ -2,6 +2,9 @@ package de.svdragster.logica.world;
 
 
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 import de.svdragster.logica.manager.ComponentManager;
 import de.svdragster.logica.manager.Entity.EntityManager;
 import de.svdragster.logica.system.System;
@@ -23,9 +26,16 @@ public class Engine {
     private ComponentManager componentManager   = new ComponentManager();
     private EntityManager entityManager         = new EntityManager(/*componentManager*/);
     private SystemManager systemManager         = new SystemManager();
+    private Queue<Object> MessagePool           = new ArrayDeque<>();
 
     boolean suspendedFlag = false;
     long loop = 0;
+
+    private void doMessageDelivery(){
+        while(!MessagePool.isEmpty()){
+            systemManager.BroadcastMessage(MessagePool.poll());
+        }
+    }
 
 
     public Engine(){
@@ -54,10 +64,11 @@ public class Engine {
     }
 
     public void run(float delta) {
-        loop++;
+        //loop++;
         // java.lang.System.nanoTime();
         long startTime = java.lang.System.nanoTime();
         try{
+            doMessageDelivery();
             for(System s : systemManager)
                 if(s.isActive())
                     s.process( delta );
@@ -77,7 +88,8 @@ public class Engine {
 
 
     public void BroadcastMessage(Object Message){
-        systemManager.BroadcastMessage(Message);
+        MessagePool.add(Message);
+        //systemManager.BroadcastMessage(Message);
     }
 
 

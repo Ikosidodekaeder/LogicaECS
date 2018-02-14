@@ -34,6 +34,7 @@ public class SystemManager extends Observable implements Iterable<System> {
             if(!SystemPool.contains(s))
                 SystemPool.add(s);
     }
+
     public void removeSystem(System system) {
             if(!SystemPool.contains(system))
                 SystemPool.remove(system);

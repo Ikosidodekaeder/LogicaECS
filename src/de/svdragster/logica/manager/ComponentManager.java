@@ -29,7 +29,6 @@ public class ComponentManager {
     }
 
 
-
     public List<Component> groupByType(ComponentType type)
     {
         List<Component> tmp = new LinkedList<>();

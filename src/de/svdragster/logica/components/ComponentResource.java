@@ -1,5 +1,7 @@
 package de.svdragster.logica.components;
 
+import java.util.List;
+
 import de.svdragster.logica.components.meta.StdComponents;
 
 /**
@@ -9,13 +11,13 @@ import de.svdragster.logica.components.meta.StdComponents;
 public class ComponentResource extends Component {
 
 
-    public float      productionRate;     //How fast 1 production unit is produced
-    public float      productionPeriod;   //Total time 1 production unit consumes
-    public float      productionAmount;   //Amount of units 1 production cycle actually creates
-    public float      productionProgress; //
-    public int        productType;        //Flag indicating The Resource
+    public float        productionRate;     //How fast 1 production unit is produced
+    public float        productionPeriod;   //Total time 1 production unit consumes
+    public float        productionAmount;   //Amount of units 1 production cycle actually creates
+    public float        productionProgress; //
+    public List<Component>  productType;        //Flag indicating The Resource
 
-    public ComponentResource(float rate,float period,float amount,int type){
+    public ComponentResource(float rate,float period,float amount,List<Component> type){
         super.setType(StdComponents.RESOURCE);
 
         productionAmount = amount;
