@@ -18,7 +18,8 @@ import de.svdragster.logica.manager.SystemManager;
  */
 public class Engine {
 
-	private static Engine instance;
+	private static Engine instance = null;
+    private static Object mutex = new Object();
 	private static long EngineFrameTime;
 
     private static long totalRuntime;
@@ -39,7 +40,6 @@ public class Engine {
     }
 
     public Engine(){
-        instance = this;
         EngineFrameTime = 0;
     }
 
@@ -102,8 +102,24 @@ public class Engine {
         return 1.0D/((FrameTime()/Math.pow(10,6)) / 1000.0D);
     }
 
+    /**
+     * Use synchronized block inside the if block and volatile variable
+     *      + Thread safety is guaranteed
+     *      + Client application could pass arguments
+     *      + Lazy initialization achieved
+     *      + Synchronization overhead is minimal and applicable only for first few threads when the variable is null.
+     * @return
+     */
 	public static synchronized Engine getInstance() {
-		return instance;
+
+        Engine result = instance;
+        if( result == null)
+            synchronized (mutex){
+                result = instance;
+                if(result == null)
+                    instance = result = new Engine();
+            }
+		return result;
 	}
 
 	public static long Runtime_ms(){
