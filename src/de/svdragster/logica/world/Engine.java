@@ -63,6 +63,7 @@ public class Engine {
         return systemManager;
     }
 
+
     public void run(float delta) {
         //loop++;
         // java.lang.System.nanoTime();
@@ -108,6 +109,7 @@ public class Engine {
      *      + Client application could pass arguments
      *      + Lazy initialization achieved
      *      + Synchronization overhead is minimal and applicable only for first few threads when the variable is null.
+     *      source: https://www.journaldev.com/171/thread-safety-in-java-singleton-classes-with-example-code
      * @return
      */
 	public static synchronized Engine getInstance() {

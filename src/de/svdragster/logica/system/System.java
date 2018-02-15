@@ -28,6 +28,7 @@ import java.util.Observer;
  *
  */
 public abstract class System  implements Observer {
+
     private EntityManager GlobalEntityContext;
     private List<Entity> LocalEntityCache = new ArrayList<>();
 

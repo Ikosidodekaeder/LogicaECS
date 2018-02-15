@@ -81,6 +81,7 @@ public class EntityManager {
      * @param ComponentType array types
      * @return
      */
+    @Deprecated
     public Entity queryEntityOfType(ComponentType...types){
         Entity r = null;
         if(types != null || types.length == 0)
@@ -111,6 +112,7 @@ public class EntityManager {
      * @param Component array types
      * @return
      */
+    @Deprecated
     public Entity queryEntityOfType(Component...types){
         Entity r = null;
         if(types != null || types.length == 0)
