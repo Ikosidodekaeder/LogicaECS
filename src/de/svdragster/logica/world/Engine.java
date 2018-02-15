@@ -22,21 +22,21 @@ public class Engine {
 	private static long EngineFrameTime;
 
     private static long totalRuntime;
+    private boolean suspendedFlag = false;
+    private long loop = 0;
 
     private ComponentManager componentManager   = new ComponentManager();
     private EntityManager entityManager         = new EntityManager(/*componentManager*/);
     private SystemManager systemManager         = new SystemManager();
     private Queue<Object> MessagePool           = new ArrayDeque<>();
 
-    boolean suspendedFlag = false;
-    long loop = 0;
+
 
     private void doMessageDelivery(){
         while(!MessagePool.isEmpty()){
             systemManager.BroadcastMessage(MessagePool.poll());
         }
     }
-
 
     public Engine(){
         instance = this;
@@ -102,7 +102,7 @@ public class Engine {
         return 1.0D/((FrameTime()/Math.pow(10,6)) / 1000.0D);
     }
 
-	public static Engine getInstance() {
+	public static synchronized Engine getInstance() {
 		return instance;
 	}
 
