@@ -19,6 +19,10 @@ public abstract class Component {
         ID = UUID.randomUUID();
     }
 
+    public Component(UUID id){
+        ID = id;
+    }
+
     public UUID getID() {
         return ID;
     }

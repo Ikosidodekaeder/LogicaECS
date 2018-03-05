@@ -2,6 +2,12 @@ package de.svdragster.logica.manager.Entity;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Provider;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +24,54 @@ import static de.svdragster.logica.util.Pair.of;
 
 public class Entity {
 
+    static class Signature{
+        public static String          calculateSignature(String Source){
+            byte[]          ComponentSignature;
+            MessageDigest digest = null;
+
+            try {
+                digest = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+
+            ComponentSignature = digest.digest(
+                    Source.getBytes(StandardCharsets.UTF_8)
+            );
+
+            //System.out.println(convertSignatureToHex(ComponentSignature));
+            return convertSignatureToHex(ComponentSignature);
+        }
+
+        private static String convertSignatureToHex(byte[] hash){
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        }
+    }
+
     private List<Component> associatedComponents = new ArrayList<>();
+
+    public String getComponentSignature() {
+        return ComponentSignature;
+    }
+
+    private String ComponentSignature = new String();
+
+    private String TypesToString(){
+        String tmp = new String();
+        for(Component c : associatedComponents)
+            tmp += c.getType().toString();
+        return tmp;
+    }
+
+    public String generateSignature(){
+        return  Signature.calculateSignature(TypesToString());
+    }
 
     public Entity(){};
     public Entity(Component... components){
@@ -26,6 +79,9 @@ public class Entity {
             associateComponent(c);
             Engine.getInstance().getComponentManager().add(c);
         }
+
+
+
 
     }
 
@@ -77,6 +133,8 @@ public class Entity {
             Engine.getInstance().getComponentManager().remove(ret.getSecond());
             return ret.getFirst();
         }
+
+        ComponentSignature = generateSignature();
         return ret.getFirst();
     }
 
@@ -96,6 +154,8 @@ public class Entity {
             associateComponent(component);
             Engine.getInstance().getComponentManager().add(component);
         }
+
+        ComponentSignature = generateSignature();
     }
 
     /**
@@ -115,6 +175,11 @@ public class Entity {
 
         if(o instanceof Entity){
             Entity e = (Entity) o;
+            //Compares the hashes and does not loop
+            if(this.getComponentSignature().equals(e.getComponentSignature()))
+                return true;
+
+            /*
             if(this.getAssociatedComponents().size() != e.getAssociatedComponents().size())
                 return false;
 
@@ -123,6 +188,7 @@ public class Entity {
                     return false;
 
             return true;
+            */
         }
 
         return false;

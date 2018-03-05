@@ -1,5 +1,6 @@
 package de.svdragster.logica.manager;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import de.svdragster.logica.components.meta.ComponentType;
 
 public class ComponentManager {
 
-    private List<Component>         componentList = new LinkedList<>();
+    private List<Component>         componentList = new ArrayList<>();
 
 
     public ComponentManager(){

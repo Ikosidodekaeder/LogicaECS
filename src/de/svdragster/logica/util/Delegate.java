@@ -5,5 +5,5 @@ package de.svdragster.logica.util;
  */
 
 public interface Delegate {
-    public void invoke(Object... args);
+    public void invoke(Object... args) throws Exception;
 }

@@ -36,7 +36,7 @@ public class ComponentMailbox extends Component {
                 this.invokable = false;
         }
 
-        public void InvokeCallback(Object...args){
+        public void InvokeCallback(Object...args) throws Exception{
             if(invokable)
                 Callback.invoke(args);
         }

@@ -112,7 +112,7 @@ public class Engine {
      *      source: https://www.journaldev.com/171/thread-safety-in-java-singleton-classes-with-example-code
      * @return
      */
-	public static synchronized Engine getInstance() {
+	public static Engine getInstance() {
 
         Engine result = instance;
         if( result == null)
