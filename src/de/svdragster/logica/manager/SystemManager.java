@@ -30,9 +30,10 @@ public class SystemManager extends Observable implements Iterable<System> {
     }
 
     public void addSystem(System... systems){
-        for(System s : systems)
-            if(!SystemPool.contains(s))
-                SystemPool.add(s);
+        //for(System s : systems)
+            for(int i = 0; i < systems.length; i++)
+            if(!SystemPool.contains(systems[i]))
+                SystemPool.add(systems[i]);
     }
 
     public void removeSystem(System system) {

@@ -33,7 +33,9 @@ public class ComponentManager {
     public List<Component> groupByType(ComponentType type)
     {
         List<Component> tmp = new LinkedList<>();
-        for(Component c : this.componentList){
+        //for(Component c : this.componentList){
+            for(int i = 0; i < componentList.size(); i++){
+                Component c = componentList.get(i);
             if(c.getType() == type)
             {
                 tmp.add(c);

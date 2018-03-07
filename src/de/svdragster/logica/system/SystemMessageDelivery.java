@@ -31,7 +31,9 @@ public class SystemMessageDelivery extends System {
         //Because ANY entity could receive a message from another entity we check every entity if they
         //have mailboxes available.
 
-        for(Entity e : getGlobalEntityContext().getEntityContext()) {
+        //for(Entity e : getGlobalEntityContext().getEntityContext())
+        for(int i = 0; i < getGlobalEntityContext().getEntityContext().size(); i++){
+            Entity e = getGlobalEntityContext().getEntityContext().get(i);
             Pair Mailbox = e.hasAssociationWith(StdComponents.MESSAGE);
             if((boolean)Mailbox.getFirst()) {
                 while(((ComponentMailbox)Mailbox.getSecond()).hasOutGoingMail()) {

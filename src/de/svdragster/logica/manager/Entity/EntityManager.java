@@ -37,8 +37,9 @@ public class EntityManager {
      * @return true if exist
      */
     public boolean hasEntity(Entity id){
-        for(Entity e : EntityContext)
-            if(e == id)
+        //for(Entity e : EntityContext)
+            for(int i = 0; i < EntityContext.size(); i++)
+            if(EntityContext.get(i) == id)
                 return true;
         return false;
     }
