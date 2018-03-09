@@ -20,6 +20,7 @@ public class NotificationNewEntity extends Notification {
         return entity;
     }
 
+    @Deprecated
     public boolean isOfType(ComponentType...Types){
         for(int i = 0; i < Types.length;i++)
             if((boolean)entity.hasAssociationWith(Types[i]).getFirst() )
@@ -27,5 +28,9 @@ public class NotificationNewEntity extends Notification {
             else
                 return false;
         return true;
+    }
+
+    public boolean isOfTypeSignature(ComponentType...Types){
+        return entity.getComponentSignature().equals(Entity.generateTypeStringFromTypes(Types));
     }
 }

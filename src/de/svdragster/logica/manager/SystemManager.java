@@ -29,27 +29,27 @@ public class SystemManager extends Observable implements Iterable<System> {
         Instance = this;
     }
 
-    public void addSystem(System... systems){
+    public synchronized void addSystem(System... systems){
         //for(System s : systems)
             for(int i = 0; i < systems.length; i++)
             if(!SystemPool.contains(systems[i]))
                 SystemPool.add(systems[i]);
     }
 
-    public void removeSystem(System system) {
+    public synchronized void removeSystem(System system) {
             if(!SystemPool.contains(system))
                 SystemPool.remove(system);
     }
 
-    public void BroadcastMessage(Object arg){
+    public synchronized  void BroadcastMessage(Object arg){
         setChanged();
         notifyObservers(arg);
     }
 
-    public static SystemManager getInstance() { return Instance;}
+    public synchronized static SystemManager getInstance() { return Instance;}
 
     @Override
-    public Iterator<System> iterator() {
+    public synchronized Iterator<System> iterator() {
         return SystemPool.iterator();
     }
 

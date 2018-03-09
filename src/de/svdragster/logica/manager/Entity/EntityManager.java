@@ -27,7 +27,7 @@ public class EntityManager {
      * @return
      */
     @NotNull
-    public static Entity createRawEntity(Component... components){
+    public synchronized static Entity createRawEntity(Component... components){
         return new Entity(components);
     }
 
@@ -36,7 +36,7 @@ public class EntityManager {
      * @param id
      * @return true if exist
      */
-    public boolean hasEntity(Entity id){
+    public synchronized boolean hasEntity(Entity id){
         //for(Entity e : EntityContext)
             for(int i = 0; i < EntityContext.size(); i++)
             if(EntityContext.get(i) == id)
@@ -50,7 +50,7 @@ public class EntityManager {
      * @param array components
      * @return
      */
-    public Entity createID(Component...components){
+    public synchronized Entity createID(Component...components){
         //Engine.getInstance().BroadcastMessage(new NotificationNewEntity(1));
         if(components != null){
             Entity id = EntityManager.createRawEntity(components);
@@ -66,7 +66,7 @@ public class EntityManager {
      * @param List<Component> components
      * @return
      */
-    public Entity createID(List<Component> components){
+    public synchronized Entity createID(List<Component> components){
         //Engine.getInstance().BroadcastMessage(new NotificationNewEntity(1));
         if(components != null){
             Entity id = EntityManager.createRawEntity(components.toArray(new Component[components.size()]));
@@ -114,7 +114,7 @@ public class EntityManager {
      * @return
      */
     @Deprecated
-    public Entity queryEntityOfType(Component...types){
+    public synchronized Entity queryEntityOfType(Component...types){
         Entity r = null;
         if(types != null || types.length == 0)
             for(Entity e : EntityContext){
@@ -144,7 +144,7 @@ public class EntityManager {
      * @param id
      * @return
      */
-    public boolean removeID(Entity id){
+    public synchronized boolean removeID(Entity id){
 
         if(hasEntity(id))
         {
@@ -164,7 +164,7 @@ public class EntityManager {
      *
      * @return List<Entity>
      */
-    public List<Entity> getEntityContext() {
+    public synchronized List<Entity> getEntityContext() {
         return EntityContext;
     }
 

@@ -20,17 +20,22 @@ public class ComponentManager {
 
     }
 
-    public void add(Component c){
+    public synchronized void add(Component c){
         this.componentList.add(c);
     }
 
-    public boolean remove(Component c)
+    public synchronized boolean remove(Component c)
     {
         return this.componentList.remove(c);
     }
 
+    public synchronized boolean removeFinal(Component c)
+    {
+        return c.getBackAssociation().removeAssociation(c.getType());
+    }
 
-    public List<Component> groupByType(ComponentType type)
+
+    public synchronized List<Component> groupByType(ComponentType type)
     {
         List<Component> tmp = new LinkedList<>();
         //for(Component c : this.componentList){
@@ -44,7 +49,7 @@ public class ComponentManager {
         return tmp;
     }
 
-    public List<List<Component>> groupByTypes(ComponentType... types){
+    public synchronized List<List<Component>> groupByTypes(ComponentType... types){
         List<List<Component>> tmp = new LinkedList<>();
         for(ComponentType c : types)
         {

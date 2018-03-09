@@ -59,7 +59,7 @@ public abstract class SystemProducerBase extends System  {
      * @param delta
      */
     public void advanceProgress(ComponentResource Resource, float delta){
-        Resource.productionProgress += Resource.productionRate*(float)(delta+Engine.FrameTime());
+        Resource.productionProgress += Resource.productionRate*(float)(delta);
     }
 
     /**

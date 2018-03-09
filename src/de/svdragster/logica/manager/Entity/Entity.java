@@ -24,7 +24,7 @@ import static de.svdragster.logica.util.Pair.of;
 
 public class Entity {
 
-    static class Signature{
+    public static class Signature{
         public static String          calculateSignature(String Source){
             byte[]          ComponentSignature;
             MessageDigest digest = null;
@@ -54,6 +54,13 @@ public class Entity {
         }
     }
 
+    public static String generateTypeStringFromTypes(ComponentType ... components){
+        String tmp = new String();
+        for(ComponentType c : components)
+            tmp += c.toString();
+        return tmp;
+    }
+
     private List<Component> associatedComponents = new ArrayList<>();
 
     public String getComponentSignature() {
@@ -70,7 +77,8 @@ public class Entity {
     }
 
     public String generateSignature(){
-        return  Signature.calculateSignature(TypesToString());
+        this.ComponentSignature = Signature.calculateSignature(TypesToString());;
+        return ComponentSignature;
     }
 
     public Entity(){};
@@ -131,6 +139,7 @@ public class Entity {
             ret.getSecond().setBackAssociation(null);
             associatedComponents.remove(ret.getSecond());
             Engine.getInstance().getComponentManager().remove(ret.getSecond());
+            ComponentSignature = generateSignature();
             return ret.getFirst();
         }
 
