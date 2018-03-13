@@ -158,13 +158,14 @@ public class Entity {
             component.setBackAssociation(this);
             associatedComponents.add(component);
             Engine.getInstance().getComponentManager().add(component);
+            ComponentSignature = generateSignature();
         }else{
             removeAssociation(ret.getSecond().getType());
             associateComponent(component);
-            Engine.getInstance().getComponentManager().add(component);
+
         }
 
-        ComponentSignature = generateSignature();
+
     }
 
     /**
